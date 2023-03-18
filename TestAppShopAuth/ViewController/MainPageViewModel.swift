@@ -13,10 +13,14 @@ class MainPageViewModel: ObservableObject{
     
     @Published var flashSales: [FlashSale] = []
     @Published var latest: [Latest] = []
+    @Published var searchList: [String] = []
+    @Published var filteredSearchList: [String] = []
     
     @Published var name = "Load"
     
     @Published var seachTF = ""
+    
+    @Published var isSearching = false
     
     @Published var loadedImage: MediaFile?
     @Published var selectedPhoto: PhotosPickerItem?{
@@ -33,13 +37,14 @@ class MainPageViewModel: ObservableObject{
     init(){
         
             downloadProducts()
-        
+        addSubscribers()
     }
     
     
     func downloadProducts(){
         downloadSale()
         downloadLatest()
+        downloadSearchList()
     }
     
     func downloadSale(){
@@ -55,6 +60,18 @@ class MainPageViewModel: ObservableObject{
             .store(in: &cancelables)
     }
     
+    func downloadSearchList(){
+        guard let searchUrl = URL(string: "https://run.mocky.io/v3/4c9cd822-9479-4509-803d-63197e5a9e19") else {return}
+        
+        NetworkService.download(url: searchUrl)
+            .decode(type: SearchModel.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { error in
+                print(error)
+            }, receiveValue: { [weak self] returnedValue in
+                self?.searchList = returnedValue.words
+            })
+            .store(in: &cancelables)
+    }
     
     
     func downloadLatest(){
@@ -85,4 +102,59 @@ class MainPageViewModel: ObservableObject{
             }
         }
     }
+    
+    func addSubscribers() {
+    
+        $seachTF
+            .combineLatest($searchList)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .map(filterWords)
+            .sink { [weak self] returnedCoins in
+                self?.filteredSearchList = returnedCoins
+            }
+            .store(in: &cancelables)
+    
+    }
+    
+    private func filterWords(text: String, words: [String]) -> [String]{
+    
+        guard !seachTF.isEmpty else {
+            return words
+        }
+    
+        let lowerCasedText = text.lowercased()
+       return words.filter { word in
+            return word.lowercased().contains(lowerCasedText)
+        }
+    }
+    
+    
+    
 }
+
+
+//func addSubscribers() {
+//
+//    $searchText
+//        .combineLatest(dataService.$allCoins)
+//        .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+//        .map(filterCoins)
+//        .sink { [weak self] returnedCoins in
+//            self?.allCoins = returnedCoins
+//        }
+//        .store(in: &cancelables)
+//
+//}
+//
+//private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel]{
+//
+//    guard !text.isEmpty else {
+//        return coins
+//    }
+//
+//    let lowerCasedText = text.lowercased()
+//   return coins.filter { coin in
+//        return coin.name.lowercased().contains(lowerCasedText) || coin.symbol.lowercased().contains(lowerCasedText) || coin.id.lowercased().contains(lowerCasedText)
+//    }
+//
+//}
