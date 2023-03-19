@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-class AuthViewController: ObservableObject{
+class AuthViewModel: ObservableObject{
     
     @Published var savedUsers: [UserEntity] = []
     
@@ -29,6 +29,9 @@ class AuthViewController: ObservableObject{
     @Published private var eMailIsValid = false
     @Published var badEmail = false
     @Published var badEmailMessage = ""
+    
+    @Published var currentUserName = ""
+    @Published var currentUserLastName = ""
     
     @Published var canSignIn = false
     @Published var validRegistration = false
@@ -139,6 +142,8 @@ class AuthViewController: ObservableObject{
             }
             .store(in: &cancelables)
         
+        
+        
     }
     
     func logIn(){
@@ -163,6 +168,7 @@ class AuthViewController: ObservableObject{
             .assign(to: \.passIsValid, on: self)
             .store(in: &cancelables)
         
+        
         Publishers.CombineLatest($loginIsValid, $passIsValid)
             .map{ login, password in
                 return (login && password)
@@ -171,6 +177,7 @@ class AuthViewController: ObservableObject{
             .store(in: &cancelables)
         
     }
+    
     
 }
 

@@ -14,6 +14,7 @@ struct TestAppShopAuthApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+            
         }
     }
 }

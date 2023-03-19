@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthView: View {
     
-    @StateObject var vm = AuthViewController()
+    @StateObject var vm = AuthViewModel()
     
     var body: some View {
         VStack{
@@ -188,7 +188,7 @@ struct AuthView: View {
         .fullScreenCover(isPresented: $vm.goToTab) {
             TabBarView()
         }
-
+        .preferredColorScheme(.light)
         
 
     }

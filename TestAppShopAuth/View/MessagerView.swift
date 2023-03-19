@@ -10,6 +10,7 @@ import SwiftUI
 struct MessagerView: View {
     var body: some View {
         Text("Messager")
+            .preferredColorScheme(.light)
     }
 }
 

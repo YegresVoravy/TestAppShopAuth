@@ -31,6 +31,8 @@ class MainPageViewModel: ObservableObject{
         }
     }
     
+    @Published var goToSecView = false
+    
     var cancelables = Set<AnyCancellable>()
     
     
@@ -107,7 +109,7 @@ class MainPageViewModel: ObservableObject{
     
         $seachTF
             .combineLatest($searchList)
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
             .map(filterWords)
             .sink { [weak self] returnedCoins in
                 self?.filteredSearchList = returnedCoins
@@ -131,30 +133,3 @@ class MainPageViewModel: ObservableObject{
     
     
 }
-
-
-//func addSubscribers() {
-//
-//    $searchText
-//        .combineLatest(dataService.$allCoins)
-//        .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-//        .map(filterCoins)
-//        .sink { [weak self] returnedCoins in
-//            self?.allCoins = returnedCoins
-//        }
-//        .store(in: &cancelables)
-//
-//}
-//
-//private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel]{
-//
-//    guard !text.isEmpty else {
-//        return coins
-//    }
-//
-//    let lowerCasedText = text.lowercased()
-//   return coins.filter { coin in
-//        return coin.name.lowercased().contains(lowerCasedText) || coin.symbol.lowercased().contains(lowerCasedText) || coin.id.lowercased().contains(lowerCasedText)
-//    }
-//
-//}

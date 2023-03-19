@@ -35,17 +35,17 @@ struct SaleCell: View {
                     Text("\(category)")
                         .padding(6)
                         .font(.system(size: 15, weight: .bold))
-                        .foregroundColor(.black)
+                        .foregroundColor(.white).shadow(color: .black, radius: 1)
                         .background(Color.gray.opacity(0.7))
                         .cornerRadius(15)
                     Text("\(name)")
                         .frame(height: 60)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white).shadow(color: .black, radius: 1)
                         .lineLimit(2)
                         .font(.system(size: 20, weight: .semibold))
                     
                     Text("$ \(price, specifier: "%.2f")")
-                        .foregroundColor(.black)
+                        .foregroundColor(.white).shadow(color: .black, radius: 1)
                 }
                 Spacer()
                 HStack{
@@ -71,7 +71,6 @@ struct SaleCell: View {
         } placeholder: {
             ProgressView()
         })
-//        .aspectRatio(contentMode: .fill)
         .cornerRadius(25)
         .shadow(color: .gray.opacity(0.5), radius: 3, x: 0, y: 0)
         .padding(7)

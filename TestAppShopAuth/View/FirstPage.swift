@@ -12,7 +12,6 @@ struct FirstPage: View {
     @StateObject var vm = MainPageViewModel()
     
     var body: some View {
-        NavigationView{
             ScrollView{
                 VStack{
                     if !vm.isSearching{
@@ -20,7 +19,7 @@ struct FirstPage: View {
                         Image(systemName: "text.justify")
                             .font(.system(size: 20, weight: .semibold))
                         Spacer()
-                        Text("Tarde by")
+                        Text("Trade by")
                             .font(.system(size: 30, weight: .bold))
                             .foregroundColor(.black)
                         Text("bata")
@@ -100,7 +99,6 @@ struct FirstPage: View {
                                             .foregroundColor(.black)
                                     }
                                     .padding()
-                                    
                                 }
                             }
                         }
@@ -155,14 +153,21 @@ struct FirstPage: View {
                                     SaleCell(category: item.category, name: item.name, price: item.price, discount: item.discount, imageURL: item.imageURL)
                                 }
                             }
+                            .onTapGesture {
+                                vm.goToSecView.toggle()
+                            }
                         }
                         
                         Spacer()
                     }
                 }
             }
+            .preferredColorScheme(.light)
             .scrollDisabled(vm.isSearching)
-        }
+            .fullScreenCover(isPresented: $vm.goToSecView) {
+                SecondPage()
+            }
+
     }
 }
 

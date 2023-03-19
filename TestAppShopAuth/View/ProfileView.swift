@@ -48,7 +48,7 @@ struct ProfileView: View {
                     }
 
                 
-                Text("Фамилия Имя Отчество")
+                Text("Satria Adhi Pradana")
                     .font(.system(size: 20, weight: .semibold))
                     .padding()
                 Button {
@@ -207,6 +207,7 @@ struct ProfileView: View {
                 }
                 .padding(.horizontal, 20)
             }
+            .preferredColorScheme(.light)
     }
     
 }

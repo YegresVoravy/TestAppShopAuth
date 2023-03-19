@@ -10,6 +10,7 @@ import SwiftUI
 struct LikeView: View {
     var body: some View {
         Text("2")
+            .preferredColorScheme(.light)
     }
 }
 
