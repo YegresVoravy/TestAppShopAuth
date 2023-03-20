@@ -51,14 +51,14 @@ struct SaleCell: View {
                 HStack{
                     Image(systemName: "heart")
                         .padding(5)
-                        .foregroundColor(Color("saleCirleElement"))
-                        .background(Color("saleCircle"))
+                        .foregroundColor(Color.saleCirleElement)
+                        .background(Color.saleCircle)
                         .clipShape(Circle())
                     
                     Image(systemName: "plus")
-                        .padding(7)
-                        .foregroundColor(Color("saleCirleElement"))
-                        .background(Color("saleCircle"))
+                        .padding(10)
+                        .foregroundColor(Color.saleCirleElement)
+                        .background(Color.saleCircle)
                         .clipShape(Circle())
                 }
             }

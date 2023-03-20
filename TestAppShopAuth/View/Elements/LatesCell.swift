@@ -16,46 +16,6 @@ struct LatesCell: View {
     
     
     var body: some View {
-        
-//        ZStack(alignment: .bottom){
-//            AsyncImage(url: imageURL){ image in
-//                image.resizable()
-//            } placeholder: {
-//                ProgressView()
-//            }
-//            .frame(width: screen.width * 0.5, height: screen.height * 0.28)
-//            .background(Color.red)
-//            .cornerRadius(25)
-//            .shadow(color: .gray, radius: 5, x: 0, y: 0)
-//            .padding(10)
-//
-//            HStack(alignment: .bottom){
-//                VStack(alignment: .leading){
-//                    Text("\(cathegory)")
-//                        .padding(5)
-//                        .font(.system(size: 10, weight: .semibold))
-//                        .background(Color.gray.opacity(0.6))
-//                        .cornerRadius(20)
-//                    Text("\(title)")
-//                        .lineLimit(2)
-//                        .foregroundColor(.black)
-//                        .font(.system(size: 15, weight: .semibold))
-//                        .padding(.bottom, 7)
-//                    Text("\(price)")
-//                        .foregroundColor(.black)
-//                        .font(.system(size: 10))
-//                }
-//                .padding()
-//
-//                Spacer()
-//                Image(systemName: "plus")
-//                    .padding(7)
-//                    .background(Color("cathegory"))
-//                    .clipShape(Circle())
-//                    .padding()
-//            }
-//            .background(Color.green)
-//            .padding()
         VStack{
             Spacer()
             HStack(alignment: .bottom){
@@ -81,7 +41,7 @@ struct LatesCell: View {
                                 Image(systemName: "plus")
                                     .padding(3)
                                     .font(.system(size: 8))
-                                    .background(Color("cathegory"))
+                                    .background(Color.cathegory)
                                     .clipShape(Circle())
                                 
             }

@@ -15,7 +15,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "iphone")
                                 .foregroundColor(.black)
                         }
@@ -28,7 +28,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "headphones")
                                 .foregroundColor(.black)
                         }
@@ -41,7 +41,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "gamecontroller")
                                 .foregroundColor(.black)
                         }
@@ -54,7 +54,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "car.side")
                                 .foregroundColor(.black)
                         }
@@ -67,7 +67,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "bed.double")
                                 .foregroundColor(.black)
                         }
@@ -80,7 +80,7 @@ struct CathegoriesCells: View {
                         ZStack{
                             Circle()
                                 .frame(width: 50, height: 50)
-                                .foregroundColor(Color("cathegory"))
+                                .foregroundColor(Color.cathegory)
                             Image(systemName: "face.smiling")
                                 .foregroundColor(.black)
                         }

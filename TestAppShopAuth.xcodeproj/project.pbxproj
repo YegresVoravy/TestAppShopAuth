@@ -10,6 +10,7 @@
 		DB901F3429C0E151009531BF /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB901F3229C0E151009531BF /* UserModel.xcdatamodeld */; };
 		DB901F3A29C23887009531BF /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB901F3929C23887009531BF /* MediaFile.swift */; };
 		DB901F3C29C2486A009531BF /* EmailEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB901F3B29C2486A009531BF /* EmailEnum.swift */; };
+		DBBB28B229C8596A001561A2 /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB28B129C8596A001561A2 /* ColorExt.swift */; };
 		DBDCFF9929C5E62100DF8F39 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDCFF9829C5E62000DF8F39 /* SearchModel.swift */; };
 		DBDCFF9B29C6039600DF8F39 /* SecondPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDCFF9A29C6039600DF8F39 /* SecondPage.swift */; };
 		DBDCFF9D29C608F500DF8F39 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDCFF9C29C608F500DF8F39 /* ProductModel.swift */; };
@@ -38,6 +39,7 @@
 		DB901F3329C0E151009531BF /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		DB901F3929C23887009531BF /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
 		DB901F3B29C2486A009531BF /* EmailEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEnum.swift; sourceTree = "<group>"; };
+		DBBB28B129C8596A001561A2 /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
 		DBDCFF9829C5E62000DF8F39 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		DBDCFF9A29C6039600DF8F39 /* SecondPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPage.swift; sourceTree = "<group>"; };
 		DBDCFF9C29C608F500DF8F39 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		DBBB28B329C859DF001561A2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DBBB28B129C8596A001561A2 /* ColorExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		DBE0B0E729BB9C3100A092E8 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 				DBE0B11029BC67AB00A092E8 /* ViewController */,
 				DBE0B11829BC71A500A092E8 /* NetworkSerce */,
 				DB901F3D29C2674F009531BF /* Enums */,
+				DBBB28B329C859DF001561A2 /* Extensions */,
 				DBE0B0F729BB9C3700A092E8 /* Assets.xcassets */,
 				DBE0B0F929BB9C3700A092E8 /* Preview Content */,
 			);
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBE0B11329BC687A00A092E8 /* LatestModel.swift in Sources */,
+				DBBB28B229C8596A001561A2 /* ColorExt.swift in Sources */,
 				DBE0B0F629BB9C3100A092E8 /* AuthView.swift in Sources */,
 				DBE0B12329BCB57E00A092E8 /* SaleCell.swift in Sources */,
 				DBE0B10F29BC664700A092E8 /* ProfileView.swift in Sources */,

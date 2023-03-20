@@ -13,9 +13,6 @@ struct SecondPage: View {
     
     @StateObject var vm = SecondPageViewController()
     
-//    @State var isChanged = false
-    
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
@@ -56,13 +53,16 @@ struct SecondPage: View {
                         }
                     }
                 }
-                VStack(alignment: .leading){
+                VStack(alignment: .leading, spacing: 10){
                     HStack{
                         Text(vm.product?.name ?? "")
+                            .font(.system(size: 20, weight: .bold))
+                            
                         
                         Spacer()
                         
                         Text("$ \(vm.product?.price ?? 0).00")
+                            .fontWeight(.semibold)
                     }
                     Text(vm.product?.description ?? "...")
                         .lineLimit(2)
@@ -86,10 +86,13 @@ struct SecondPage: View {
                         ForEach(vm.product?.colors ?? [""], id: \.self){ color in
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 40, height: 40)
-                                .foregroundColor(.red)
+                                .foregroundColor(Color(color))
+                                .shadow(color: .black, radius: 1, x: 0, y: 0)
                         }
                     }
+
                 }
+                .padding(.horizontal, 5)
                 HStack{
                     VStack(alignment: .leading){
                         Text("Quantity:")
@@ -97,12 +100,15 @@ struct SecondPage: View {
                             .font(.system(size: 8))
                         HStack{
                             Button {
-                                
+                                vm.count -= 1
+                                if vm.count <= 0{
+                                    vm.count = 0
+                                }
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 10)
                                         .frame(width: 40, height: 25)
-                                        .foregroundColor(Color("blue"))
+                                        .foregroundColor(Color.menuBlue)
                                     Text("-")
                                         .foregroundColor(.white)
                                 }
@@ -111,12 +117,12 @@ struct SecondPage: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 10))
                             Button {
-                                
+                                vm.count += 1
                             } label: {
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 10)
                                         .frame(width: 40, height: 25)
-                                        .foregroundColor(Color("blue"))
+                                        .foregroundColor(Color.menuBlue)
                                     Text("+")
                                         .foregroundColor(.white)
                                 }
@@ -125,9 +131,11 @@ struct SecondPage: View {
                     }
                     Spacer()
                     HStack{
-                        Text("\(vm.count * (vm.product?.price ?? 0))")
+                        Text("$ \(vm.count * (vm.product?.price ?? 0))")
                             .foregroundColor(.gray)
-                            .font(.system(size: 10))
+                            .frame(width: screen.width * 0.2)
+                            .font(.system(size: 13))
+//                            .padding(.horizontal)
                         Button {
                             
                         } label: {
@@ -139,8 +147,8 @@ struct SecondPage: View {
                         .padding()
 
                     }
-                    .padding()
-                    .background(Color("blue"))
+                    .padding(5)
+                    .background(Color.menuBlue)
                     .cornerRadius(20)
                 }
                 .padding()

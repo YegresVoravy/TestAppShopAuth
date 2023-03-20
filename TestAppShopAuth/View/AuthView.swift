@@ -24,7 +24,7 @@ struct AuthView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .multilineTextAlignment(.center)
-                    .background(Color("authTF"))
+                    .background(Color.authTF)
                     .cornerRadius(20)
                     .padding(.horizontal, 20)
                     .padding(.bottom)
@@ -34,7 +34,7 @@ struct AuthView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .multilineTextAlignment(.center)
-                    .background(Color("authTF"))
+                    .background(Color.authTF)
                     .cornerRadius(20)
                     .padding(.horizontal, 20)
                     .padding(.bottom)
@@ -44,7 +44,7 @@ struct AuthView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .multilineTextAlignment(.center)
-                    .background(Color("authTF"))
+                    .background(Color.authTF)
                     .cornerRadius(20)
                     .padding(.horizontal)
 
@@ -71,7 +71,7 @@ struct AuthView: View {
                 .padding(15)
                 .frame(maxWidth: .infinity)
                 .foregroundColor(.white)
-                .background(Color("blue"))
+                .background(Color.menuBlue)
                 .cornerRadius(17)
                 .padding(15)
                 .disabled(!vm.badEmail)
@@ -116,7 +116,7 @@ struct AuthView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .multilineTextAlignment(.center)
-                    .background(Color("authTF"))
+                    .background(Color.authTF)
                     .cornerRadius(20)
                     .padding(20)
                 
@@ -127,26 +127,36 @@ struct AuthView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 40)
                             .multilineTextAlignment(.center)
-                            .background(Color("authTF"))
+                            .background(Color.authTF)
                             .cornerRadius(20)
                             .padding(20)
+                        Button {
+                            vm.isSecurePassword.toggle()
+                        } label: {
+                            Image(systemName: "eye")
+                                .foregroundColor(Color.gray)
+                                .padding(.trailing, 30)
+                        }
+                        .padding(10)
                     } else {
                         SecureField("Password", text: $vm.password)
                             .padding(8)
                             .frame(maxWidth: .infinity)
                             .frame(height: 40)
                             .multilineTextAlignment(.center)
-                            .background(Color("authTF"))
+                            .background(Color.authTF)
                             .cornerRadius(20)
                             .padding(20)
+                        Button {
+                            vm.isSecurePassword.toggle()
+                        } label: {
+                            Image(systemName: "eye.slash")
+                                .foregroundColor(Color.gray)
+                                .padding(.trailing, 30)
+                        }
+                        .padding(10)
                     }
-                    Button {
-                        vm.isSecurePassword.toggle()
-                    } label: {
-                        Image(systemName: "eye.slash")
-                            .foregroundColor(Color.gray)
-                            .padding(.trailing, 30)
-                    }
+
                 }
                 .padding(.bottom, 25)
                 
@@ -167,7 +177,7 @@ struct AuthView: View {
                 .padding(15)
                 .frame(maxWidth: .infinity)
                 .foregroundColor(.white)
-                .background(Color("blue"))
+                .background(Color.menuBlue)
                 .cornerRadius(17)
                 .padding(20)
                 Button {

@@ -25,26 +25,26 @@ struct ProfileView: View {
                         .frame(width: 50, height: 50)
                         .cornerRadius(25)
                         .padding(1)
-                        .background(Color("profile"))
+                        .background(Color.profile)
                         .clipShape(Circle())
                     
 
 
                 } else{
                     Image(systemName: "person.badge.plus")
-                        .foregroundColor(Color("profile"))
+                        .foregroundColor(Color.profile)
                         .padding()
                         .background(Color.white)
                         .clipShape(Circle())
                         .padding(1)
-                        .background(Color("profile"))
+                        .background(Color.profile)
                         .clipShape(Circle())
                 }
                 
                     
                 PhotosPicker(selection: $vm.selectedPhoto, matching: .any(of: [.images]), photoLibrary: .shared()) {
                         Text("Change photo")
-                            .foregroundColor(Color("profile"))
+                        .foregroundColor(Color.profile)
                     }
 
                 
@@ -60,7 +60,7 @@ struct ProfileView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .font(.system(size: 15, weight: .bold))
-                .background(Color("blue"))
+                .background(Color.menuBlue)
                 .cornerRadius(15)
                 .padding(.horizontal, 25)
                 .overlay {
@@ -76,7 +76,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "creditcard")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Trade store")
                             Spacer()
@@ -93,7 +93,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "creditcard")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Payment method")
                             Spacer()
@@ -110,7 +110,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "creditcard")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Trade store")
                             Spacer()
@@ -127,7 +127,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "creditcard")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Trade history")
                             Spacer()
@@ -144,7 +144,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "creditcard")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Trade store")
                             Spacer()
@@ -161,7 +161,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "arrow.triangle.2.circlepath")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Restore purchase")
                             Spacer()
@@ -178,7 +178,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "questionmark.circle")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Help")
                             Spacer()
@@ -195,7 +195,7 @@ struct ProfileView: View {
                         HStack{
                             Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .padding(10)
-                                .background(Color("profile").opacity(0.5))
+                                .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
                             Text("Log out")
                             Spacer()

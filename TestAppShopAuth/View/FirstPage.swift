@@ -24,16 +24,16 @@ struct FirstPage: View {
                             .foregroundColor(.black)
                         Text("bata")
                             .font(.system(size: 30, weight: .bold))
-                            .foregroundColor(Color("blue"))
+                            .foregroundColor(Color.menuBlue)
                         Spacer()
                         VStack{
                             Image(systemName: "person.badge.plus")
-                                .foregroundColor(Color("profile"))
+                                .foregroundColor(Color.profile)
                                 .padding()
                                 .background(Color.white)
                                 .clipShape(Circle())
                                 .padding(1)
-                                .background(Color("profile"))
+                                .background(Color.profile)
                                 .clipShape(Circle())
                             
                             
@@ -54,17 +54,17 @@ struct FirstPage: View {
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 40)
                                     .multilineTextAlignment(.center)
-                                    .background(Color("authTF"))
+                                    .background(Color.authTF)
                                     .cornerRadius(20)
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(.gray)
-//                                    .padding(.trailing, 17)
                                     .offset(x: -20)
                             }
                             if vm.isSearching{
                                 Button {
                                     withAnimation {
                                         vm.isSearching.toggle()
+                                        vm.seachTF = ""
                                     }
                                 } label: {
                                     Image(systemName: "multiply")
