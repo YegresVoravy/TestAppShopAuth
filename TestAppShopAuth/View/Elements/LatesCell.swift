@@ -47,8 +47,6 @@ struct LatesCell: View {
             }
             .padding(7)
             .padding(.bottom, 4)
-            .background(Color.black.opacity(0.3)) //Белый текст на белом фоне не видно было
-        
         
         }
                     .frame(width: screen.width * 0.3, height: screen.height * 0.18)
