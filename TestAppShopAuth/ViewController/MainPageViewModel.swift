@@ -36,7 +36,7 @@ class MainPageViewModel: ObservableObject{
     
     init(){
         
-            downloadProducts()
+        downloadProducts()
         addSubscribers()
     }
     
@@ -103,7 +103,7 @@ class MainPageViewModel: ObservableObject{
     }
     
     func addSubscribers() {
-    
+        
         $seachTF
             .combineLatest($searchList)
             .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
@@ -112,21 +112,18 @@ class MainPageViewModel: ObservableObject{
                 self?.filteredSearchList = returnedCoins
             }
             .store(in: &cancelables)
-    
+        
     }
     
     private func filterWords(text: String, words: [String]) -> [String]{
-    
+        
         guard !seachTF.isEmpty else {
             return words
         }
-    
+        
         let lowerCasedText = text.lowercased()
-       return words.filter { word in
+        return words.filter { word in
             return word.lowercased().contains(lowerCasedText)
         }
     }
-    
-    
-    
 }

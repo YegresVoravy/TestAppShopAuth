@@ -7,18 +7,11 @@
 
 import Foundation
 
-struct LatestModel: Codable{
-
+struct LatestModel: Decodable{
     let latest: [Latest]
-    
-    enum CodingKeys: String, CodingKey {
-        case latest
-    }
 }
 
-
-
-struct Latest: Identifiable, Codable {
+struct Latest: Identifiable, Decodable {
     let id = UUID()
     let category, name: String
     let price: Int

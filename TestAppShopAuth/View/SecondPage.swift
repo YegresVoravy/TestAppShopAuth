@@ -13,13 +13,13 @@ struct SecondPage: View {
     
     @StateObject var vm = SecondPageViewModel()
     
-    
     @State var startingOffsetX: CGFloat = 0
     @State var currentDragOffsetX: CGFloat = 0
     
     var body: some View {
             VStack{
                 HStack{
+                    
                     Button {
                         presentationMode.wrappedValue.dismiss()
                     } label: {
@@ -31,6 +31,7 @@ struct SecondPage: View {
                     Spacer()
                 }
                 ZStack{
+                    
                     AsyncImage(url: URL(string: vm.mainImage)){ image in
                         image.resizable().aspectRatio(contentMode: .fill).clipped()
                     } placeholder: {
@@ -50,13 +51,13 @@ struct SecondPage: View {
                                     }
                                     .onEnded{ value in
                                         withAnimation(.spring()){
-                                            if currentDragOffsetX < -5{
+                                            if currentDragOffsetX < -3{
                                                 vm.count += 1
                                                 if vm.count >= vm.images.count{
                                                     vm.count = 0
                                                 }
                                                 vm.mainImage = vm.images[vm.count]
-                                            } else if currentDragOffsetX > 5 {
+                                            } else if currentDragOffsetX > 3 {
                                                 vm.count -= 1
                                                 if vm.count < 0{
                                                     vm.count = vm.images.count - 1
@@ -67,26 +68,26 @@ struct SecondPage: View {
                                         }
                                     }
                                 )
-
                     VStack{
+                        
                         Button {
                             
                         } label: {
                             Image(systemName: "heart")
                                 .foregroundColor(.tabSelectedItem)
                         }
+                        
                         RoundedRectangle(cornerRadius: 1)
                             .frame(width: 15, height: 1, alignment: .center)
                             .foregroundColor(.gray)
                             .padding(.vertical, 7)
+                        
                         Button {
                             
                         } label: {
                             Image(systemName: "point.3.connected.trianglepath.dotted")
                                 .foregroundColor(.tabSelectedItem)
                         }
-
-
                     }
                     .padding(7)
                     .padding(.vertical, 5)
@@ -94,10 +95,9 @@ struct SecondPage: View {
                     .cornerRadius(10)
                     .offset(x: 160, y: 110)
                 }
-
-                
                 HStack{
                     ForEach(0..<vm.images.count, id: \.self){index in
+                        
                         Button {
                             vm.mainImage = vm.images[index]
                         } label: {
@@ -116,17 +116,16 @@ struct SecondPage: View {
                         }
                     }
                 }
+                
                 VStack(alignment: .leading, spacing: 10){
                     HStack{
                         Text(vm.product?.name ?? "")
                             .font(.system(size: 20, weight: .bold))
-                            
-                        
                         Spacer()
-                        
                         Text("$ \(vm.product?.price ?? 0).00")
                             .fontWeight(.semibold)
                     }
+                    
                     Text(vm.product?.description ?? "...")
                         .lineLimit(2)
                         .foregroundColor(.gray.opacity(0.9))
@@ -139,12 +138,10 @@ struct SecondPage: View {
                         Text("(\(vm.product?.numberOfReviews ?? 0) reviews)")
                             .foregroundColor(.gray)
                         Spacer()
-                        
-                        
                     }
                     
-                    
                     Text("Colors:")
+                    
                     HStack{
                         ForEach(vm.product?.colors ?? [""], id: \.self){ color in
                             RoundedRectangle(cornerRadius: 10)
@@ -153,7 +150,6 @@ struct SecondPage: View {
                                 .shadow(color: .black, radius: 1, x: 0, y: 0)
                         }
                     }
-
                 }
                 .padding(.horizontal, 5)
                 HStack{
@@ -162,6 +158,7 @@ struct SecondPage: View {
                             .foregroundColor(.gray)
                             .font(.system(size: 8))
                         HStack{
+                            
                             Button {
                                 vm.count -= 1
                                 if vm.count <= 0{
@@ -176,9 +173,11 @@ struct SecondPage: View {
                                         .foregroundColor(.white)
                                 }
                             }
+                            
                             Text("\(vm.count)")
                                 .foregroundColor(.white)
                                 .font(.system(size: 10))
+                            
                             Button {
                                 vm.count += 1
                             } label: {
@@ -192,13 +191,15 @@ struct SecondPage: View {
                             }
                         }
                     }
+                    
                     Spacer()
+                    
                     HStack{
                         Text("$ \(vm.count * (vm.product?.price ?? 0))")
                             .foregroundColor(.gray)
                             .frame(width: screen.width * 0.2)
                             .font(.system(size: 13))
-//                            .padding(.horizontal)
+                        
                         Button {
                             
                         } label: {
@@ -208,7 +209,6 @@ struct SecondPage: View {
                                 .font(.system(size: 12, weight: .semibold))
                         }
                         .padding()
-
                     }
                     .padding(5)
                     .background(Color.menuBlue)
@@ -217,47 +217,9 @@ struct SecondPage: View {
                 .padding()
                 .background(Color.black)
                 .cornerRadius(20)
-
-            
         }
             .padding(.horizontal)
             .ignoresSafeArea()
             .preferredColorScheme(.light)
     }
 }
-    
-
-
-
-//@State var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.85
-//@State var currentDragOffsetY: CGFloat = 0
-//@State var endingOffsetY: CGFloat = 0
-
-
-
-//    .offset(y: startingOffsetY)
-//    .offset(y: currentDragOffsetY)
-//    .offset(y: endingOffsetY)
-//    .gesture(
-//        DragGesture()
-//            .onChanged{ value in
-//                withAnimation(.spring()){
-//                    currentDragOffsetY = value.translation.height
-//                }
-//            }
-//            .onEnded{ value in
-//
-//
-//
-//                withAnimation(.spring()){
-//
-//                    if currentDragOffsetY < -150{
-//                        endingOffsetY = -startingOffsetY
-//                    } else if endingOffsetY != 0 && currentDragOffsetY > 150 {
-//                        endingOffsetY = 0
-//                    }
-//                    currentDragOffsetY = 0
-//                }
-//            }
-//
-//    )

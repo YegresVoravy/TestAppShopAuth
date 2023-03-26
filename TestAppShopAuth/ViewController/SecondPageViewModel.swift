@@ -36,5 +36,4 @@ class SecondPageViewModel: ObservableObject{
             })
             .store(in: &cancelables)
     }
-    
 }
