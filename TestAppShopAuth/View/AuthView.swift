@@ -11,6 +11,7 @@ struct AuthView: View {
     
     @StateObject var vm = AuthViewModel()
     
+    
     var body: some View {
         VStack{
             if vm.registration{
@@ -20,6 +21,8 @@ struct AuthView: View {
                     .foregroundColor(.black)
                     .padding(.vertical, 60)
                 TextField("First name", text: $vm.firstName)
+                    .keyboardType(.default)
+                    .autocorrectionDisabled(true)
                     .padding(8)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
@@ -40,6 +43,7 @@ struct AuthView: View {
                     .padding(.bottom)
                 
                 TextField("Email", text: $vm.eMail)
+                    .keyboardType(.emailAddress)
                     .padding(8)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
@@ -84,30 +88,32 @@ struct AuthView: View {
                     Button {
                         vm.registration.toggle()
                     } label: {
-                        Text("login")
+                        Text("Log in")
                     }
                     Spacer()
                 }
                 .padding(.horizontal, 20)
                 .font(.system(size: 13))
-                
-                HStack{
-                    Image("google")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    Text("Sign in with Google")
+                VStack(alignment: .leading){
+                    HStack{
+                        Image("google")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                        Text("Sign in with Google")
+                    }
+                    .padding(.top)
+                    HStack{
+                        Image("apple")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                        Text("Sign in with Apple")
+                    }
+                    .padding(.top)
                 }
-                .padding(.top)
-                HStack{
-                    Image("apple")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    Text("Sign in with Apple")
-                }
-                .padding()
+                .padding(.leading, 20)
                 Spacer()
             }else{
-                Text("Welcome back!")
+                Text("Welcome back")
                     .font(.title.bold())
                     .foregroundColor(.black)
                     .padding(.vertical, 70)
@@ -166,10 +172,11 @@ struct AuthView: View {
                         vm.login = ""
                         vm.password = ""
                     } else {
-                        vm.loginAlert.toggle()
                         vm.login = ""
                         vm.password = ""
+                        vm.loginAlert.toggle()
                     }
+                    print("\(vm.loginAlert)    \(vm.canLogin)")
                 } label: {
                     Text("Login")
                         .font(.system(size: 18, weight: .bold))
@@ -188,6 +195,10 @@ struct AuthView: View {
                 Spacer()
             }
             
+        }
+        .padding()
+        .onTapGesture {
+            UIApplication.shared.keyWindow?.endEditing(true)
         }
         .alert(isPresented: $vm.loginAlert, content: {
             Alert(title: Text("Ошибка!"), message: Text("Логин или пароль введены не верно."), dismissButton: .default(Text("Ok")))

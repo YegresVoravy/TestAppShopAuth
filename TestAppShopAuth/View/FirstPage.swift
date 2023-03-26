@@ -17,31 +17,30 @@ struct FirstPage: View {
                     if !vm.isSearching{
                     HStack{
                         Image(systemName: "text.justify")
-                            .font(.system(size: 20, weight: .semibold))
+                            .font(.system(size: 25, weight: .bold))
                         Spacer()
                         Text("Trade by")
-                            .font(.system(size: 30, weight: .bold))
+                            .font(.system(size: 25, weight: .bold))
                             .foregroundColor(.black)
                         Text("bata")
-                            .font(.system(size: 30, weight: .bold))
+                            .font(.system(size: 25, weight: .bold))
                             .foregroundColor(Color.menuBlue)
                         Spacer()
                         VStack{
-                            Image(systemName: "person.badge.plus")
-                                .foregroundColor(Color.profile)
-                                .padding()
-                                .background(Color.white)
-                                .clipShape(Circle())
-                                .padding(1)
-                                .background(Color.profile)
-                                .clipShape(Circle())
+                            Spacer()
+                            Image("avatar")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .cornerRadius(15)
                             
                             
                             HStack{
-                                Text("Navigation")
-                                    .font(.system(size: 12))
+                                Text("Location")
+                                    .font(.system(size: 10))
+                                    .foregroundColor(.gray)
+                                    .fontWeight(.semibold)
                                 Image(systemName: "chevron.down")
-                                    .font(.system(size: 12))
+                                    .font(.system(size: 8))
                             }
                         }
                     }
@@ -52,24 +51,27 @@ struct FirstPage: View {
                                 TextField(!vm.isSearching ? "What are you looking for?" : "", text: $vm.seachTF)
                                     .padding(5)
                                     .frame(maxWidth: .infinity)
-                                    .frame(height: 40)
+                                    .frame(height: 30)
                                     .multilineTextAlignment(.center)
-                                    .background(Color.authTF)
+                                    .background(Color.searchTF)
                                     .cornerRadius(20)
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(.gray)
-                                    .offset(x: -20)
+                                    .offset(x: -10)
                             }
+                            .padding(.horizontal, 35)
                             if vm.isSearching{
                                 Button {
                                     withAnimation {
                                         vm.isSearching.toggle()
                                         vm.seachTF = ""
+                                        UIApplication.shared.keyWindow?.endEditing(true)
                                     }
                                 } label: {
                                     Image(systemName: "multiply")
                                         .foregroundColor(.red)
                                         .font(.system(size: 25, weight: .semibold))
+
                                 }
                                 .padding(8)
                                 
@@ -110,7 +112,7 @@ struct FirstPage: View {
                         HStack{
                             Text("Latest")
                                 .foregroundColor(.black)
-                                .font(.system(size: 20))
+                                .font(.system(size: 15, weight: .bold))
                             Spacer()
                             Button {
                                 
@@ -134,7 +136,7 @@ struct FirstPage: View {
                         HStack{
                             Text("Flash sale")
                                 .foregroundColor(.black)
-                                .font(.system(size: 20))
+                                .font(.system(size: 15, weight: .bold))
                             Spacer()
                             Button {
                                 
@@ -150,7 +152,7 @@ struct FirstPage: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack{
                                 ForEach(vm.flashSales){ item in
-                                    SaleCell(category: item.category, name: item.name, price: item.price, discount: item.discount, imageURL: item.imageURL)
+                                    FlashSaleCell(category: item.category, name: item.name, price: item.price, discount: item.discount, imageURL: item.imageURL)
                                 }
                             }
                             .onTapGesture {

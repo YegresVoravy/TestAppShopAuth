@@ -13,7 +13,7 @@ let screen = UIScreen.main.bounds
 struct TestAppShopAuthApp: App {
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            TabBarView()
             
         }
     }

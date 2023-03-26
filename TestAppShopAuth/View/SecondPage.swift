@@ -11,10 +11,13 @@ struct SecondPage: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @StateObject var vm = SecondPageViewController()
+    @StateObject var vm = SecondPageViewModel()
+    
+    
+    @State var startingOffsetX: CGFloat = 0
+    @State var currentDragOffsetX: CGFloat = 0
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 HStack{
                     Button {
@@ -24,17 +27,74 @@ struct SecondPage: View {
                             .foregroundColor(.black)
                             .font(.system(size: 25))
                     }
-                    .padding()
+                    .padding(.horizontal)
                     Spacer()
                 }
-                
-                AsyncImage(url: URL(string: vm.mainImage)){ image in
-                    image.resizable().aspectRatio(contentMode: .fill).clipped()
-                } placeholder: {
-                    ProgressView()
+                ZStack{
+                    AsyncImage(url: URL(string: vm.mainImage)){ image in
+                        image.resizable().aspectRatio(contentMode: .fill).clipped()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: screen.width * 0.85, height: screen.width * 0.85)
+                    .cornerRadius(15)
+                        .offset(x: startingOffsetX)
+                        .offset(x: currentDragOffsetX)
+
+                        .gesture(
+                                DragGesture()
+                                    .onChanged{ value in
+                                        withAnimation(.spring()){
+                                            currentDragOffsetX = value.translation.width
+                                        }
+                                    }
+                                    .onEnded{ value in
+                                        withAnimation(.spring()){
+                                            if currentDragOffsetX < -5{
+                                                vm.count += 1
+                                                if vm.count >= vm.images.count{
+                                                    vm.count = 0
+                                                }
+                                                vm.mainImage = vm.images[vm.count]
+                                            } else if currentDragOffsetX > 5 {
+                                                vm.count -= 1
+                                                if vm.count < 0{
+                                                    vm.count = vm.images.count - 1
+                                                }
+                                                vm.mainImage = vm.images[vm.count]
+                                            }
+                                            currentDragOffsetX = 0
+                                        }
+                                    }
+                                )
+
+                    VStack{
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "heart")
+                                .foregroundColor(.tabSelectedItem)
+                        }
+                        RoundedRectangle(cornerRadius: 1)
+                            .frame(width: 15, height: 1, alignment: .center)
+                            .foregroundColor(.gray)
+                            .padding(.vertical, 7)
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "point.3.connected.trianglepath.dotted")
+                                .foregroundColor(.tabSelectedItem)
+                        }
+
+
+                    }
+                    .padding(7)
+                    .padding(.vertical, 5)
+                    .background(Color.cathegory)
+                    .cornerRadius(10)
+                    .offset(x: 160, y: 110)
                 }
-                .frame(width: screen.width * 0.9, height: screen.width * 0.9)
-                .cornerRadius(15)
+
                 
                 HStack{
                     ForEach(0..<vm.images.count, id: \.self){index in
@@ -50,6 +110,9 @@ struct SecondPage: View {
                             .cornerRadius(10)
                             .shadow(color: .gray.opacity(0.5), radius: 3, x: 0, y: 0)
                             .padding(7)
+                        }
+                        .onTapGesture {
+                            DragGesture(minimumDistance: 100)
                         }
                     }
                 }
@@ -154,14 +217,47 @@ struct SecondPage: View {
                 .padding()
                 .background(Color.black)
                 .cornerRadius(20)
-            }
 
             
         }
-        
-        .padding()
-        .preferredColorScheme(.light)
+            .padding(.horizontal)
+            .ignoresSafeArea()
+            .preferredColorScheme(.light)
     }
 }
     
 
+
+
+//@State var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.85
+//@State var currentDragOffsetY: CGFloat = 0
+//@State var endingOffsetY: CGFloat = 0
+
+
+
+//    .offset(y: startingOffsetY)
+//    .offset(y: currentDragOffsetY)
+//    .offset(y: endingOffsetY)
+//    .gesture(
+//        DragGesture()
+//            .onChanged{ value in
+//                withAnimation(.spring()){
+//                    currentDragOffsetY = value.translation.height
+//                }
+//            }
+//            .onEnded{ value in
+//
+//
+//
+//                withAnimation(.spring()){
+//
+//                    if currentDragOffsetY < -150{
+//                        endingOffsetY = -startingOffsetY
+//                    } else if endingOffsetY != 0 && currentDragOffsetY > 150 {
+//                        endingOffsetY = 0
+//                    }
+//                    currentDragOffsetY = 0
+//                }
+//            }
+//
+//    )

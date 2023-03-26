@@ -16,29 +16,23 @@ struct ProfileView: View {
     
     
     var body: some View {
-            VStack{
+        VStack(spacing: 15){
                 Text("Profile")
                     .font(.system(size: 20, weight: .bold))
+                    .padding(.top)
                 if vm.loadedImage != nil {
                     vm.loadedImage?.image
                         .resizable()
                         .frame(width: 50, height: 50)
                         .cornerRadius(25)
-                        .padding(1)
-                        .background(Color.profile)
-                        .clipShape(Circle())
                     
 
 
                 } else{
-                    Image(systemName: "person.badge.plus")
-                        .foregroundColor(Color.profile)
-                        .padding()
-                        .background(Color.white)
-                        .clipShape(Circle())
-                        .padding(1)
-                        .background(Color.profile)
-                        .clipShape(Circle())
+                    Image("avatar")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(25)
                 }
                 
                     
@@ -50,7 +44,7 @@ struct ProfileView: View {
                 
                 Text("Satria Adhi Pradana")
                     .font(.system(size: 20, weight: .semibold))
-                    .padding()
+                    .padding(7)
                 Button {
                     
                 } label: {
@@ -69,7 +63,7 @@ struct ProfileView: View {
                         .fontWeight(.bold)
                         .offset(x: -100)
                 }
-                VStack{
+            VStack(spacing: 15){
                     Button {
                         
                     } label: {
@@ -112,10 +106,9 @@ struct ProfileView: View {
                                 .padding(10)
                                 .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
-                            Text("Trade store")
+                            Text("Balance")
                             Spacer()
-                            Image(systemName: "chevron.right")
-                                .fontWeight(.bold)
+                            Text("$ 1593")
                         }
                         .font(.system(size: 20))
                         .foregroundColor(.black)
@@ -142,28 +135,11 @@ struct ProfileView: View {
                         
                     } label: {
                         HStack{
-                            Image(systemName: "creditcard")
-                                .padding(10)
-                                .background(Color.profile.opacity(0.5))
-                                .clipShape(Circle())
-                            Text("Trade store")
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .fontWeight(.bold)
-                        }
-                        .font(.system(size: 20))
-                        .foregroundColor(.black)
-                    }
-                    
-                    Button {
-                        
-                    } label: {
-                        HStack{
                             Image(systemName: "arrow.triangle.2.circlepath")
                                 .padding(10)
                                 .background(Color.profile.opacity(0.5))
                                 .clipShape(Circle())
-                            Text("Restore purchase")
+                            Text("Restore Puurchase")
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .fontWeight(.bold)
@@ -182,8 +158,6 @@ struct ProfileView: View {
                                 .clipShape(Circle())
                             Text("Help")
                             Spacer()
-                            Image(systemName: "chevron.right")
-                                .fontWeight(.bold)
                         }
                         .font(.system(size: 20))
                         .foregroundColor(.black)
@@ -206,6 +180,7 @@ struct ProfileView: View {
                     }
                 }
                 .padding(.horizontal, 20)
+                Spacer()
             }
             .preferredColorScheme(.light)
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CathegoriesCells: View {
+    
     var body: some View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15){
@@ -16,8 +17,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "iphone")
+                            Image("phone")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Phones")
                             .font(.system(size: 10))
@@ -29,8 +31,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "headphones")
+                            Image("headPhones")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Headphones")
                             .font(.system(size: 10))
@@ -42,8 +45,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "gamecontroller")
+                            Image("joystick")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Games")
                             .font(.system(size: 10))
@@ -55,8 +59,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "car.side")
+                            Image("car")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Cars")
                             .font(.system(size: 10))
@@ -68,8 +73,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "bed.double")
+                            Image("furniture")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Furniture")
                             .font(.system(size: 10))
@@ -81,8 +87,9 @@ struct CathegoriesCells: View {
                             Circle()
                                 .frame(width: 50, height: 50)
                                 .foregroundColor(Color.cathegory)
-                            Image(systemName: "face.smiling")
+                            Image("robot")
                                 .foregroundColor(.black)
+                                .font(.system(size: 25, weight: .semibold))
                         }
                         Text("Kids")
                             .font(.system(size: 10))

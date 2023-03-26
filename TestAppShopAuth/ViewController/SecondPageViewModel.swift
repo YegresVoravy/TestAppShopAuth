@@ -9,12 +9,12 @@ import SwiftUI
 import Combine
 
 
-class SecondPageViewController: ObservableObject{
+class SecondPageViewModel: ObservableObject{
     
     @Published var product: ProductModel?
     @Published var images: [String] = []
     @Published var mainImage: String  = ""
-    @Published var count = 1
+    @Published var count = 0
     
     var cancelables = Set<AnyCancellable>()
     

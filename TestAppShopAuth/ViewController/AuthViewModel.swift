@@ -29,9 +29,9 @@ class AuthViewModel: ObservableObject{
     @Published private var eMailIsValid = false
     @Published var badEmail = false
     @Published var badEmailMessage = ""
-    
-    @Published var currentUserName = ""
-    @Published var currentUserLastName = ""
+//    
+//    @Published var currentUserName = ""
+//    @Published var currentUserLastName = ""
     
     @Published var canSignIn = false
     @Published var validRegistration = false
@@ -73,7 +73,14 @@ class AuthViewModel: ObservableObject{
     
     func addUser(firstName: String, lastName: String, eMail: String){
         let newUser = UserEntity(context: container.viewContext)
-        newUser.firstName = firstName
+
+        if firstName.hasSuffix(" "){
+            var fName = firstName
+            fName.removeLast()
+            newUser.firstName = fName
+        } else {
+            newUser.firstName = firstName
+        }
         newUser.lastName = lastName
         newUser.eMail = eMail
         newUser.password = "12345678"

@@ -54,9 +54,12 @@ extension Color {
 extension Color{
     static let authTF = Color("#EBEBEB")
     static let menuBlue = Color("#4D52C6")
-    static let cathegory = Color("#D5D5D5")
+    static let cathegory = Color("#EEEFF4")
+    static let searchTF = Color("#F5F6F7")
     static let profile = Color("#D5D5D5")
     static let saleCircle = Color("#E6E9EE")
     static let saleCirleElement = Color("#5F5F5F")
+    static let tabSelected = Color("#EEEFF4")
+    static let tabSelectedItem = Color("#727294")
 }
 
