@@ -22,17 +22,17 @@ struct ProfileView: View {
                     .padding(.top)
                 if vm.loadedImage != nil {
                     vm.loadedImage?.image
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(25)
+                        .resizable().aspectRatio(contentMode: .fill).clipped()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(35)
                     
 
 
                 } else{
                     Image("avatar")
                         .resizable()
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(25)
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(35)
                 }
                 
                     
