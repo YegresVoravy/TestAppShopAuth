@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @State private var selectedTab: Tab = .house
+    @StateObject var vm = MainPageViewModel()
     
     init(){
         UITabBar.appearance().isHidden = true
@@ -19,7 +20,7 @@ struct TabBarView: View {
         ZStack{
                     switch selectedTab{
                     case .house:
-                        FirstPage()
+                        FirstPage(vm: vm)
                     case .heart:
                         LikeView()
                     case .cart:
@@ -30,8 +31,10 @@ struct TabBarView: View {
                         ProfileView()
                     }
             VStack{
-                Spacer()
-                CustomTabBarView(selectedTab: $selectedTab)
+                if !vm.isSearching{
+                    Spacer()
+                    CustomTabBarView(selectedTab: $selectedTab)
+                }
             }
         }
     }

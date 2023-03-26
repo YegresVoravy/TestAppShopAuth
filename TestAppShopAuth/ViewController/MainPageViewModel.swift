@@ -16,8 +16,6 @@ class MainPageViewModel: ObservableObject{
     @Published var searchList: [String] = []
     @Published var filteredSearchList: [String] = []
     
-    @Published var name = "Load"
-    
     @Published var seachTF = ""
     
     @Published var isSearching = false
@@ -88,7 +86,6 @@ class MainPageViewModel: ObservableObject{
             })
             .store(in: &cancelables)
     }
-    
     
     func processPhoto(photo: PhotosPickerItem){
         photo.loadTransferable(type: Data.self) { result in

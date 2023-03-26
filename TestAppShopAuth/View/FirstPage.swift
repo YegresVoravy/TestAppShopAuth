@@ -11,6 +11,8 @@ struct FirstPage: View {
     
     @StateObject var vm = MainPageViewModel()
     
+    
+    
     var body: some View {
             ScrollView{
                 VStack{

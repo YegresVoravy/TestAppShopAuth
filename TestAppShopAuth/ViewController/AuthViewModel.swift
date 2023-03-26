@@ -16,33 +16,14 @@ class AuthViewModel: ObservableObject{
     let container: NSPersistentContainer
     
     @Published var login = ""
-    @Published private var loginIsValid = false
     @Published var password = ""
-    @Published private var passIsValid = false
     @Published var canLogin = false
-    @Published var loginAlert = false
     @Published var firstName = ""
-    @Published var firstNameNotUsed = false
     @Published var lastName = ""
-    @Published var lastNameNotUsed = false
     @Published var eMail = ""
-    @Published private var eMailIsValid = false
+    @Published var canSignIn = false
     @Published var badEmail = false
     @Published var badEmailMessage = ""
-//    
-//    @Published var currentUserName = ""
-//    @Published var currentUserLastName = ""
-    
-    @Published var canSignIn = false
-    @Published var validRegistration = false
-    
-    @Published var signInAlert = false
-
-    @Published var registration = true
-    
-    @Published var isSecurePassword = false
-    
-    @Published var goToTab = false
     
     private let emailPredicate = NSCompoundPredicate(format: "SELF MATCHES %@", Ragex.email.rawValue)
     
@@ -57,9 +38,9 @@ class AuthViewModel: ObservableObject{
             }
         }
         fetchUsers()
+        emailCheck()
         signIn()
         logIn()
-        
     }
     
     func fetchUsers(){
@@ -73,7 +54,7 @@ class AuthViewModel: ObservableObject{
     
     func addUser(firstName: String, lastName: String, eMail: String){
         let newUser = UserEntity(context: container.viewContext)
-
+        
         if firstName.hasSuffix(" "){
             var fName = firstName
             fName.removeLast()
@@ -97,43 +78,19 @@ class AuthViewModel: ObservableObject{
     }
     
     func signIn(){
-        $firstName
-            .map{ value in
-                if self.savedUsers.contains(where: {$0.firstName == value}) || value.isEmpty{
-                    return false
-                } else {
-                    return true
-                }
-            }
-            .assign(to: \.firstNameNotUsed, on: self)
-            .store(in: &cancelables)
-        $lastName
-            .map{ value in
-                if self.savedUsers.contains(where: {$0.lastName == value}) || value.isEmpty{
-                    return false
-                } else {
-                    return true
-                }
-            }
-            .assign(to: \.lastNameNotUsed, on: self)
-            .store(in: &cancelables)
-        $eMail
-            .map{ value in
-                if self.savedUsers.contains(where: {$0.eMail == value}) || value.isEmpty{
-                    return false
-                } else {
-                    return true
-                }
-            }
-            .assign(to: \.eMailIsValid, on: self)
-            .store(in: &cancelables)
-        
-        Publishers.CombineLatest3($firstNameNotUsed, $lastNameNotUsed, $eMailIsValid)
+        Publishers.CombineLatest3($firstName, $lastName, $eMail)
             .map{first, last, email in
-                return(first && last && email)
+                if (self.savedUsers.contains(where: {$0.firstName == first}) || first.isEmpty) && (self.savedUsers.contains(where: {$0.lastName == last}) || last.isEmpty) && (self.savedUsers.contains(where: {$0.eMail == email}) || email.isEmpty){
+                    return false
+                } else {
+                    return true
+                }
             }
             .assign(to: \.canSignIn, on: self)
             .store(in: &cancelables)
+    }
+    
+    func emailCheck(){
         $eMail
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map{ value -> (Bool, String) in
@@ -148,43 +105,22 @@ class AuthViewModel: ObservableObject{
                 self?.badEmailMessage = message
             }
             .store(in: &cancelables)
-        
-        
-        
     }
     
     func logIn(){
-        $login
-            .map{value -> Bool in
-                if self.savedUsers.contains(where: {$0.firstName == value}){
-                    return true
-                } else {
-                    return false
-                }
-            }
-            .assign(to: \.loginIsValid, on: self)
-            .store(in: &cancelables)
-        $password
-            .map{value -> Bool in
-                if self.savedUsers.contains(where: {$0.password == value}){
-                    return true
-                } else {
-                    return false
-                }
-            }
-            .assign(to: \.passIsValid, on: self)
-            .store(in: &cancelables)
-        
-        
-        Publishers.CombineLatest($loginIsValid, $passIsValid)
+        Publishers.CombineLatest($login, $password)
             .map{ login, password in
-                return (login && password)
+                if self.savedUsers.contains(where: {$0.firstName == login}) && self.savedUsers.contains(where: {$0.password == password}){
+                    return true
+                } else {
+                    return false
+                }
             }
             .assign(to: \.canLogin, on: self)
             .store(in: &cancelables)
-        
     }
-    
-    
 }
+
+
+
 

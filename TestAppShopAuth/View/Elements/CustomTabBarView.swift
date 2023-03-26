@@ -13,6 +13,7 @@ struct CustomTabBarView: View {
     
     var body: some View {
         VStack{
+            
             HStack{
                 ForEach(Tab.allCases, id: \.rawValue){ tab in
                     Spacer()
